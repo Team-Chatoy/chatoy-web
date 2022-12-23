@@ -1,7 +1,13 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
+import { Router } from "@solidjs/router";
+import { HopeProvider } from "@hope-ui/core";
+import { App } from "./App";
 
-import "./index.css";
-import App from "./App";
-
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(() => (  
+  <Router>
+    <HopeProvider>
+      <App />
+    </HopeProvider>
+  </Router>
+), document.getElementById("root") as HTMLElement);
