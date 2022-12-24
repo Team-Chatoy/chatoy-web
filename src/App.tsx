@@ -4,7 +4,7 @@ import { Home, Login, Chat } from "./pages";
 
 export const App = () => (
   <StateProvider>
-    <Routes base="chatoy-web">
+    <Routes>
       <Route path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/chat" component={Chat} />

@@ -5,7 +5,7 @@ import { HopeProvider } from "@hope-ui/core";
 import { App } from "./App";
 
 render(() => (
-  <Router>
+  <Router base="chatoy-web">
     <HopeProvider>
       <App />
     </HopeProvider>
