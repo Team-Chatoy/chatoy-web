@@ -4,7 +4,7 @@ import { Router } from "@solidjs/router";
 import { HopeProvider } from "@hope-ui/core";
 import { App } from "./App";
 
-render(() => (  
+render(() => (
   <Router>
     <HopeProvider>
       <App />
