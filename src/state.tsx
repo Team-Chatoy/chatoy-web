@@ -1,9 +1,18 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
+import { Dayjs } from "dayjs";
+
+export interface IRoom {
+  id: number;
+  name: string;
+  description: string;
+  created: Dayjs;
+}
 
 interface IData {
   server: string;
   token: string;
+  rooms: IRoom[];
 }
 
 type TState = [
@@ -20,6 +29,7 @@ export const StateProvider = (props: { children: any }) => {
   const initData: IData = {
     server: "",
     token: "",
+    rooms: [],
   };
 
   const [data, setData] = createStore(initData);

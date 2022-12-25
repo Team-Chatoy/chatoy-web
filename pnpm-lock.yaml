@@ -5,6 +5,7 @@ specifiers:
   '@solidjs/router': ^0.6.0
   '@stitches/core': ^1.2.8
   clsx: ^1.2.1
+  dayjs: ^1.11.7
   solid-js: ^1.5.1
   typescript: ^4.8.2
   vite: ^3.0.9
@@ -15,6 +16,7 @@ dependencies:
   '@solidjs/router': 0.6.0_solid-js@1.6.6
   '@stitches/core': 1.2.8
   clsx: 1.2.1
+  dayjs: 1.11.7
   solid-js: 1.6.6
 
 devDependencies:
@@ -596,6 +598,10 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
