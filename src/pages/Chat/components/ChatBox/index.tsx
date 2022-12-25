@@ -12,7 +12,14 @@ export const ChatBox = (props: IChatBoxProps) => {
       when={props.room !== -1}
       fallback={(
         <Center flex={props.flex}>
-          <Text>Hello, Chatoy!</Text>
+          <Box>
+            <Text size="5xl">
+              Hello, Chatoy!
+            </Text>
+            <Text size="xl">
+              Please select one from the room list on the left to start chatting.
+            </Text>
+          </Box>
         </Center>
       )}
     >

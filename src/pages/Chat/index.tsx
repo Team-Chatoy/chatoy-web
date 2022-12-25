@@ -41,7 +41,7 @@ export const Chat = () => {
         <Heading size="2xl" mb={2}>
           Chatoy - {state.server}
         </Heading>
-        <Text mb={2}>
+        <Text mb={5}>
           Your token: <code>{state.token}</code>
         </Text>
         <Flex h={0} flex={1}>
