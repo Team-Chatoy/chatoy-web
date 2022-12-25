@@ -11,7 +11,7 @@ export const Card = (props: ICardProps) => {
     <Box
       border={theme => `1px solid ${theme.vars.colors.neutral["200"]}`}
       rounded="lg"
-      shadow="lg"
+      shadow="sm"
       w="full"
       bg="white"
       p={5}

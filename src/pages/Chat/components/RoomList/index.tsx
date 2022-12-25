@@ -14,7 +14,7 @@ export const RoomList = (props: IRoomListProps) => {
     <Box overflowY="scroll" flex={props.flex}>
       <For each={props.rooms}>
         {(room) => (
-          <Box mb={2} mx={2}>
+          <Box m={2}>
             <Card room={room} setRoom={props.setRoom} />
           </Box>
         )}

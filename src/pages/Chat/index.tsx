@@ -1,7 +1,8 @@
-import { createResource, createSignal, onMount } from "solid-js";
+import { createResource, createSignal, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { Container, Flex, Heading, Text } from "@hope-ui/core";
-import { WsData } from "../../types";
+import { v4 as uuidv4 } from "uuid";
+import { MessageContent, WsData } from "../../types";
 import { useState } from "../../state";
 import { fetchRooms } from "../../utils";
 import { ChatBox, RoomList } from "./components";
@@ -43,6 +44,19 @@ export const Chat = () => {
     }
   };
 
+  const sendMsg = (room: number, msg: MessageContent) => {
+    const uuid = uuidv4();
+
+    ws.send(JSON.stringify({
+      type: "Msg",
+      uuid,
+      room,
+      data: msg,
+    }));
+  };
+
+  onCleanup(() => ws.close());
+
   const [rooms_raw] = createResource(async () => await fetchRooms(state.server, state.token));
 
   const rooms = () => {
@@ -67,19 +81,28 @@ export const Chat = () => {
         h="full"
         p={12}
       >
-        <Heading size="2xl" mb={2}>
+        <Heading size="3xl" mb={2}>
           Chatoy - {state.server}
         </Heading>
         <Text mb={5}>
           Your token: <code>{state.token}</code>
         </Text>
-        <Flex h={0} flex={1}>
+        <Flex
+          border={theme => `1px solid ${theme.vars.colors.neutral["200"]}`}
+          rounded="lg"
+          flex={1}
+          h={0}
+        >
           <RoomList
             flex={1}
             rooms={rooms()}
             setRoom={setRoom}
           />
-          <ChatBox room={room()} flex={3} />
+          <ChatBox
+            flex={3}
+            room={room()}
+            sendMsg={sendMsg}
+          />
         </Flex>
       </Flex>
     </Container>

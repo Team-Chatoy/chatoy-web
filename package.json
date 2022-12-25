@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/uuid": "^9.0.0",
     "typescript": "^4.8.2",
     "vite": "^3.0.9",
     "vite-plugin-solid": "^2.3.0"
@@ -20,6 +21,7 @@
     "@stitches/core": "^1.2.8",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
-    "solid-js": "^1.5.1"
+    "solid-js": "^1.5.1",
+    "uuid": "^9.0.0"
   }
 }
