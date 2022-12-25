@@ -3,7 +3,7 @@ import { IRoom } from "../../../../types";
 
 interface ICardProps {
   room: IRoom;
-  setRoom: (room: number) => void;
+  setRoom: (room: IRoom) => void;
 }
 
 export const Card = (props: ICardProps) => {
@@ -54,7 +54,7 @@ export const Card = (props: ICardProps) => {
         isFullWidth
         variant="soft"
         colorScheme="primary"
-        onClick={() => props.setRoom(props.room.id)}
+        onClick={() => props.setRoom(props.room)}
       >
         Enter
       </Button>

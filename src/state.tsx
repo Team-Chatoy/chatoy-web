@@ -1,11 +1,13 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
-import { IMessage } from "./types";
+import { IMessage, IUser } from "./types";
 
 interface IData {
   server: string;
   token: string;
+  me: IUser | null; // TODO: server does not provide this for now :(
   msgs: IMessage[];
+  userDict: { [id: number]: IUser | undefined };
 }
 
 type TState = [
@@ -14,6 +16,7 @@ type TState = [
     setServer: (server: string) => void,
     setToken: (token: string) => void,
     addMessage: (msg: IMessage) => void,
+    addUserInfo: (user: IUser) => void,
   },
 ];
 
@@ -23,7 +26,9 @@ export const StateProvider = (props: { children: any }) => {
   const initData: IData = {
     server: "",
     token: "",
+    me: null,
     msgs: [],
+    userDict: { },
   };
 
   const [data, setData] = createStore(initData);
@@ -34,6 +39,7 @@ export const StateProvider = (props: { children: any }) => {
       setServer: (server: string) => setData({ server }),
       setToken: (token: string) => setData({ token }),
       addMessage: (msg: IMessage) => setData("msgs", msgs => [...msgs, msg]),
+      addUserInfo: (user: IUser) => setData("userDict", userDict => ({ ...userDict, [user.id]: user })),
     },
   ];
 

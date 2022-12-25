@@ -6,12 +6,12 @@ import { Card } from "..";
 interface IRoomListProps {
   flex?: number;
   rooms: IRoom[];
-  setRoom: (room: number) => void;
+  setRoom: (room: IRoom) => void;
 }
 
 export const RoomList = (props: IRoomListProps) => {
   return (
-    <Box overflowY="scroll" flex={props.flex}>
+    <Box overflowY="auto" flex={props.flex}>
       <For each={props.rooms}>
         {(room) => (
           <Box m={2}>

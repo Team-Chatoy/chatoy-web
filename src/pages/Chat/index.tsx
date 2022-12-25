@@ -2,13 +2,13 @@ import { createResource, createSignal, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { Container, Flex, Heading, Text } from "@hope-ui/core";
 import { v4 as uuidv4 } from "uuid";
-import { MessageContent, WsData } from "../../types";
+import { IRoom, MessageContent, WsData } from "../../types";
 import { useState } from "../../state";
 import { fetchRooms } from "../../utils";
 import { ChatBox, RoomList } from "./components";
 
 export const Chat = () => {
-  const [room, setRoom] = createSignal(-1);
+  const [room, setRoom] = createSignal<IRoom>();
   const navigate = useNavigate();
   const [state, { addMessage }] = useState();
 

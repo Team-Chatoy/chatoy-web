@@ -1,5 +1,14 @@
 import { Dayjs } from "dayjs";
 
+export interface IUser {
+  id: number;
+  username: string;
+  nickname: string;
+  slogan: string;
+  status: 0 | 1 | 2;
+  registered: Dayjs;
+}
+
 export interface IRoom {
   id: number;
   name: string;
