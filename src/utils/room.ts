@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { IRoom } from "../state";
+import { IRoom } from "../types";
 
 export const fetchRooms = async (
   server: string,

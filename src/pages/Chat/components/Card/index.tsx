@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from "@hope-ui/core";
-import { IRoom } from "../../../../state";
+import { IRoom } from "../../../../types";
 
 interface ICardProps {
   room: IRoom;

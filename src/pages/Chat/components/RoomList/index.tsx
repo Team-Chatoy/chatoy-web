@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 import { Box } from "@hope-ui/core";
-import { IRoom } from "../../../../state";
+import { IRoom } from "../../../../types";
 import { Card } from "..";
 
 interface IRoomListProps {
