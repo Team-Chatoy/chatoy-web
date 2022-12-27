@@ -4,11 +4,19 @@ import { IMessage, IUser } from "../../../../types";
 import { useState } from "../../../../state";
 import { getUserInfo } from "../../../../utils";
 
+const LoadingMsg = () => {
+  return (
+    <Flex>
+      <Text>Loading...</Text>
+    </Flex>
+  );
+};
+
 interface IMsgProps {
   msg: IMessage;
 }
 
-const MyMsg = (props: { sender: IUser, msg: IMessage }) => {
+const MyMsg = (props: IMsgProps) => {
   return (
     <Flex
       direction="row-reverse"
@@ -42,10 +50,18 @@ export const Msg = (props: IMsgProps) => {
 
   return (
     <Box my={1}>
-      <Show when={typeof sender() !== "undefined"}>
-        <Flex>
-          {`${sender()!.nickname}: ${props.msg.data.text}`}
-        </Flex>
+      <Show
+        when={typeof sender() !== "undefined"}
+        fallback={<LoadingMsg />}
+      >
+        <Show
+          when={sender()!.id !== state.me!.id}
+          fallback={<MyMsg msg={props.msg} />}
+        >
+          <Flex>
+            {`${sender()!.nickname}: ${props.msg.data.text}`}
+          </Flex>
+        </Show>
       </Show>
     </Box>
   );

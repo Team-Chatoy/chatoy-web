@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { Box, Button, Center, Heading, HStack, Input, Modal, Text } from "@hope-ui/core";
+import { IUser } from "../../types";
 import { useState } from "../../state";
 import { login } from "../../utils";
 import { centerBox } from "../styles";
@@ -11,7 +12,7 @@ export const Login = () => {
   const [modalOpen, setModalOpen] = createSignal(false);
   const [errMsg, setErrMsg] = createSignal("");
   const navigate = useNavigate();
-  const [state, { setToken }] = useState();
+  const [state, { setToken, setMe }] = useState();
 
   if (state.server === "")
     navigate("/");
@@ -33,9 +34,10 @@ export const Login = () => {
     }
 
     login(state.server, username(), password())
-      .then(([ok, msg]) => {
+      .then(([ok, msg, me]) => {
         if (ok) {
           setToken(msg);
+          setMe(me as IUser);
           navigate("/chat");
         } else {
           onErr(msg);
