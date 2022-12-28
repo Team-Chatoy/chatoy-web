@@ -1,7 +1,8 @@
 import { createResource, createSignal, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import { Container, Flex, Heading, Text } from "@hope-ui/core";
+import { Box, Container, Flex, Heading, Text } from "@hope-ui/core";
 import { v4 as uuidv4 } from "uuid";
+import dayjs from "dayjs";
 import { IRoom, MessageContent, WsData } from "../../types";
 import { useState } from "../../state";
 import { fetchRooms } from "../../utils";
@@ -38,6 +39,7 @@ export const Chat = () => {
       }
 
       case "Recv": {
+        msg.data.sent = dayjs(msg.data.sent);
         addMessage(msg.data);
         break;
       }
@@ -57,7 +59,8 @@ export const Chat = () => {
 
   onCleanup(() => ws.close());
 
-  const [rooms_raw] = createResource(async () => await fetchRooms(state.server, state.token));
+  const [rooms_raw, { refetch }] =
+    createResource(async () => await fetchRooms(state.server, state.token));
 
   const rooms = () => {
     if (rooms_raw.loading) {
@@ -97,6 +100,11 @@ export const Chat = () => {
             flex={1}
             rooms={rooms()}
             setRoom={setRoom}
+            refetchRoom={refetch}
+          />
+          <Box
+            h="full"
+            borderLeft={theme => `1px solid ${theme.vars.colors.neutral["200"]}`}
           />
           <ChatBox
             flex={3}

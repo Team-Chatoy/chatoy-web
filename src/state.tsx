@@ -5,7 +5,7 @@ import { IMessage, IUser } from "./types";
 interface IData {
   server: string;
   token: string;
-  me: IUser | null; // TODO: server does not provide this for now :(
+  me: IUser | null;
   msgs: IMessage[];
   userDict: { [id: number]: IUser | undefined };
 }
@@ -15,6 +15,7 @@ type TState = [
   {
     setServer: (server: string) => void,
     setToken: (token: string) => void,
+    setMe: (me: IUser) => void,
     addMessage: (msg: IMessage) => void,
     addUserInfo: (user: IUser) => void,
   },
@@ -38,6 +39,7 @@ export const StateProvider = (props: { children: any }) => {
     {
       setServer: (server: string) => setData({ server }),
       setToken: (token: string) => setData({ token }),
+      setMe: (me: IUser) => setData({ me }),
       addMessage: (msg: IMessage) => setData("msgs", msgs => [...msgs, msg]),
       addUserInfo: (user: IUser) => setData("userDict", userDict => ({ ...userDict, [user.id]: user })),
     },

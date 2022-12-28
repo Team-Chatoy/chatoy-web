@@ -363,14 +363,14 @@ packages:
     dev: true
     optional: true
 
-  /@floating-ui/core/1.0.4:
-    resolution: {integrity: sha512-FPFLbg2b06MIw1dqk2SOEMAMX3xlrreGjcui5OTxfBDtaKTmh0kioOVjT8gcfl58juawL/yF+S+gnq8aUYQx/Q==}
+  /@floating-ui/core/1.0.5:
+    resolution: {integrity: sha512-iDdOsaCHZH/0FM0yNBYt+cJxJF9S5jrYWNtDZOiDFMiZ7uxMJ/71h8eTwoVifEAruv9p9rlMPYCGIgMjOz95FQ==}
     dev: false
 
-  /@floating-ui/dom/1.0.12:
-    resolution: {integrity: sha512-HeG/wHoa2laUHlDX3xkzqlUqliAfa+zqV04LaKIwNCmCNaW2p0fQi4/Kd0LB4GdFoJ2UllLFq5gWnXAd67lg7w==}
+  /@floating-ui/dom/1.1.0:
+    resolution: {integrity: sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==}
     dependencies:
-      '@floating-ui/core': 1.0.4
+      '@floating-ui/core': 1.0.5
     dev: false
 
   /@hope-ui/core/1.0.0-next.11_eo7mhxf7bkphudiliukpjlqfym:
@@ -378,7 +378,7 @@ packages:
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
-      '@floating-ui/dom': 1.0.12
+      '@floating-ui/dom': 1.1.0
       '@hope-ui/primitives': 1.0.0-next.11_solid-js@1.6.6
       '@hope-ui/styles': 1.0.0-next.11_eo7mhxf7bkphudiliukpjlqfym
       '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.6
