@@ -1,18 +1,17 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import { Box, Button, Center, Flex, Heading, HStack, Input, Modal, Text } from "@hope-ui/core";
-import { IUser } from "../../types";
+import { Box, Button, Center, Heading, HStack, Input, Modal, Text } from "@hope-ui/core";
 import { useState } from "../../state";
-import { login } from "../../utils";
+import { register } from "../../utils";
 import { centerBox } from "../styles";
 
-export const Login = () => {
+export const Register = () => {
   const [username, setUsername] = createSignal("");
   const [password, setPassword] = createSignal("");
   const [modalOpen, setModalOpen] = createSignal(false);
   const [errMsg, setErrMsg] = createSignal("");
   const navigate = useNavigate();
-  const [state, { setToken, setMe }] = useState();
+  const [state] = useState();
 
   if (state.server === "")
     navigate("/");
@@ -22,7 +21,7 @@ export const Login = () => {
     setModalOpen(true);
   };
 
-  const onLogin = () => {
+  const onRegister = () => {
     if (username() === "") {
       onErr("Username can NOT be empty!");
       return;
@@ -33,12 +32,10 @@ export const Login = () => {
       return;
     }
 
-    login(state.server, username(), password())
-      .then(([ok, msg, me]) => {
+    register(state.server, username(), password())
+      .then(([ok, msg]) => {
         if (ok) {
-          setToken(msg);
-          setMe(me as IUser);
-          navigate("/chat");
+          navigate("/login");
         } else {
           onErr(msg);
         }
@@ -55,7 +52,7 @@ export const Login = () => {
       rounded="2xl"
     >
       <Center mb="20px">
-        <Heading size="2xl">Sign in to {state.server}</Heading>
+        <Heading size="2xl">Register to {state.server}</Heading>
       </Center>
       <Center p="0 30px" mb="20px">
         <Text size="xl" mr="10px">
@@ -78,24 +75,18 @@ export const Login = () => {
           onInput={(event) => setPassword(event.currentTarget.value)}
           onKeyPress={(event) => {
             if (event.key === "Enter")
-              onLogin();
+              onRegister();
           }}
         />
       </Center>
-      <Flex justify="space-evenly">
+      <Center>
         <Button
           variant="solid"
-          onClick={onLogin}
-        >
-          Sign in
-        </Button>
-        <Button
-          variant="solid"
-          onClick={() => navigate("/register")}
+          onClick={onRegister}
         >
           Register
         </Button>
-      </Flex>
+      </Center>
       <Modal
         isOpen={modalOpen()}
         onClose={() => setModalOpen(false)}
