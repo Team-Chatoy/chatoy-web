@@ -74,7 +74,7 @@ export const MsgBox = (props: IMsgBoxProps) => {
           align="flex-end"
           justify="space-between"
         >
-          <Text flex={1}>
+          <Text id="msg" flex={1}>
             {props.msg.data.text}
           </Text>
           <Text
