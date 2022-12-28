@@ -1,6 +1,6 @@
-import { For } from "solid-js";
+import { createEffect, For } from "solid-js";
 import { Box, Divider, Flex, Text } from "@hope-ui/core";
-import { IRoom } from "../../../../types";
+import { IMessage, IRoom } from "../../../../types";
 import { useState } from "../../../../state";
 import { Msg } from "./Msg";
 
@@ -13,6 +13,26 @@ export const MsgList = (props: IMsgListProps) => {
   const [state] = useState();
 
   const msgs = () => state.msgs.filter((msg) => msg.room === props.room.id);
+
+  createEffect((prev: IMessage[]) => {
+    const newMsgs = msgs();
+
+    if (prev.length === 0)
+      return newMsgs;
+
+    const diff = newMsgs.filter(msg => !prev.find(m => m.uuid === msg.uuid));
+    const diffMsg = diff.find(msg => msg.room === props.room.id);
+
+    if (typeof diffMsg !== "undefined") {
+      Promise.resolve() // scroll the msg list after rendering new msg
+        .then(() => {
+          const msgList = document.getElementById("msg-list")!;
+          msgList.scrollTop = msgList.scrollHeight;
+        });
+    }
+
+    return newMsgs;
+  }, []);
 
   return (
     <Flex
@@ -29,7 +49,7 @@ export const MsgList = (props: IMsgListProps) => {
         {props.room.name}
       </Text>
       <Divider variant="dashed" my={2} />
-      <Box overflowY="auto">
+      <Box id="msg-list" overflowY="auto">
         <For each={msgs()}>
           {(msg) => <Msg msg={msg} />}
         </For>
