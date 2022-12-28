@@ -1,3 +1,3 @@
 export { login } from "./login";
-export { fetchRooms } from "./room";
+export { fetchRooms, joinRoom } from "./room";
 export { getUserInfo } from "./user";

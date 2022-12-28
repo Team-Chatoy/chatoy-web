@@ -1,12 +1,12 @@
 import { Box, Button, Flex, Text } from "@hope-ui/core";
 import { IRoom } from "../../../../types";
 
-interface ICardProps {
+interface IRoomProps {
   room: IRoom;
   setRoom: (room: IRoom) => void;
 }
 
-export const Card = (props: ICardProps) => {
+export const Room = (props: IRoomProps) => {
   return (
     <Box
       border={theme => `1px solid ${theme.vars.colors.neutral["200"]}`}
