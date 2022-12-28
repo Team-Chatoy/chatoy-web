@@ -2,6 +2,7 @@ import { createResource, createSignal, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { Box, Container, Flex, Heading, Text } from "@hope-ui/core";
 import { v4 as uuidv4 } from "uuid";
+import dayjs from "dayjs";
 import { IRoom, MessageContent, WsData } from "../../types";
 import { useState } from "../../state";
 import { fetchRooms } from "../../utils";
@@ -38,6 +39,7 @@ export const Chat = () => {
       }
 
       case "Recv": {
+        msg.data.sent = dayjs(msg.data.sent);
         addMessage(msg.data);
         break;
       }

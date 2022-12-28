@@ -3,6 +3,7 @@ import { Box, Flex, Text } from "@hope-ui/core";
 import { IMessage, IUser } from "../../../../types";
 import { useState } from "../../../../state";
 import { getUserInfo } from "../../../../utils";
+import { MsgBox } from "./MsgBox";
 
 const LoadingMsg = () => {
   return (
@@ -15,17 +16,6 @@ const LoadingMsg = () => {
 interface IMsgProps {
   msg: IMessage;
 }
-
-const MyMsg = (props: IMsgProps) => {
-  return (
-    <Flex
-      direction="row-reverse"
-      mr={5}
-    >
-      <Text color="Green">{props.msg.data.text}</Text>
-    </Flex>
-  );
-};
 
 export const Msg = (props: IMsgProps) => {
   const [sender, setSender] = createSignal<IUser>();
@@ -49,19 +39,12 @@ export const Msg = (props: IMsgProps) => {
   });
 
   return (
-    <Box my={1}>
+    <Box my={2}>
       <Show
         when={typeof sender() !== "undefined"}
         fallback={<LoadingMsg />}
       >
-        <Show
-          when={sender()!.id !== state.me!.id}
-          fallback={<MyMsg msg={props.msg} />}
-        >
-          <Flex>
-            {`${sender()!.nickname}: ${props.msg.data.text}`}
-          </Flex>
-        </Show>
+        <MsgBox sender={sender()!} msg={props.msg} />
       </Show>
     </Box>
   );
