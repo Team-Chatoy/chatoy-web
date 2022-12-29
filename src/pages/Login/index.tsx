@@ -23,17 +23,20 @@ export const Login = () => {
   };
 
   const onLogin = () => {
-    if (username() === "") {
+    const username_trim = username().trim();
+    const password_trim = password().trim();
+
+    if (username_trim === "") {
       onErr("Username can NOT be empty!");
       return;
     }
 
-    if (password() === "") {
+    if (password_trim === "") {
       onErr("Password can NOT be empty!");
       return;
     }
 
-    login(state.server, username(), password())
+    login(state.server, username_trim, password_trim)
       .then(([ok, msg, me]) => {
         if (ok) {
           setToken(msg);
