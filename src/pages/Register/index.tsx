@@ -22,17 +22,20 @@ export const Register = () => {
   };
 
   const onRegister = () => {
-    if (username() === "") {
+    const username_trim = username().trim();
+    const password_trim = password().trim();
+
+    if (username_trim === "") {
       onErr("Username can NOT be empty!");
       return;
     }
 
-    if (password() === "") {
+    if (password_trim === "") {
       onErr("Password can NOT be empty!");
       return;
     }
 
-    register(state.server, username(), password())
+    register(state.server, username_trim, password_trim)
       .then(([ok, msg]) => {
         if (ok) {
           navigate("/login");

@@ -11,6 +11,11 @@ export const InputBox = (props: IInputBoxProps) => {
   const [text, setText] = createSignal("");
 
   const sendMsg = () => {
+    if (text().trim() === "") {
+      setText("");
+      return;
+    }
+
     props.sendMsg(props.room, {
       type: "Text",
       text: text(),

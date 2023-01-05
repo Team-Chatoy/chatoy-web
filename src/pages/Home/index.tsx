@@ -10,7 +10,7 @@ export const Home = () => {
   const [, { setServer }] = useState();
 
   const next = () => {
-    setServer(value());
+    setServer(value().trim());
     navigate("/login");
   };
 
